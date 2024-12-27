@@ -1,24 +1,14 @@
 "use client";
 
 import { useQueryState } from "nuqs";
-import { ChangeEvent } from "react";
 
 export function NuqsForm() {
-  const [query, setQuery] = useQueryState("q");
-
-  function handleInputChange(e: ChangeEvent<HTMLInputElement>) {
-    setQuery(e.target.value);
-  }
-
-  function handleClear() {
-    setQuery(null);
-  }
-
+  const [name, setName] = useQueryState("name");
   return (
     <>
-      <input value={query || ""} onChange={handleInputChange} />
-      <button onClick={handleClear}>クリア</button>
-      <p>{query}!</p>
+      <input value={name || ""} onChange={(e) => setName(e.target.value)} />
+      <button onClick={() => setName(null)}>Clear</button>
+      <p>Hello, {name || "anonymous visitor"}!</p>
     </>
   );
 }
